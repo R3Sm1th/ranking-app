@@ -2,4 +2,4 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "bootstrap"
-import "./controllers/browse"
+import "./controllers/browse.js"
