@@ -1,6 +1,15 @@
 console.log("connected")
 const list = document.querySelector("#results")
 
+const detailedView = (data) => {
+  return `<p>${data.Title}</p>`;
+};
+
+const fetchMovieData = async (query) => {
+  const response = await fetch(`https://www.omdbapi.com/?apikey=adf1f2d7&i=${query}`);
+  const data = await response.json();
+  return data;
+};
 const insertMovies = (data) => {
   data.Search.forEach((result) => {
     const movieTag = `<div class="card">
@@ -17,17 +26,17 @@ const insertMovies = (data) => {
     list.insertAdjacentHTML("beforeend", movieTag);
   });
 
-  list.addEventListener("click", (event) => {
+  list.addEventListener("click", async (event) => {
     const target = event.target;
     // Check if the clicked element is the "More Info" button
     if (target.classList.contains("modal-btn")) {
       const imdbID = target.getAttribute("data-imdbid");
       const modalContent = document.querySelector(".modal-body");
-      modalContent.innerText = imdbID;
+      const movie = await fetchMovieData(imdbID);
+      modalContent.innerText = detailedView(movie);
     }
   });
 };
-
 
 // const setupModalButtonClickListeners = () => {
 //   const modalContent = document.querySelector(".modal-body");
