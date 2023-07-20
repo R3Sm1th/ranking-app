@@ -1,1 +1,19 @@
 // Specific CSS for your home-page
+.hero_section .container {
+  height: 100vh;
+  padding: 10%;
+  background-color: white;
+  overflow: hidden;
+}
+
+.hero_section .detail-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-height: 50vh;
+}
+
+.img-box img {
+  max-height: 100%;
+  overflow: hidden;
+}
