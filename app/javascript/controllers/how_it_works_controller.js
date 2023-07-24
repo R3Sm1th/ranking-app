@@ -9,10 +9,10 @@ export default class extends Controller {
     console.log(this.element);
     Sortable.create(this.element, {
       ghostClass: "ghost",
-      animation: 150,
-      onEnd: (event) => {
-        alert(`${event.oldIndex} moved to ${event.newIndex}`)
-      }
+      animation: 150
+      // onEnd: (event) => {
+      //   alert(`${event.oldIndex+1} moved to ${event.newIndex+1}`)
+      // }
     })
   }
 }

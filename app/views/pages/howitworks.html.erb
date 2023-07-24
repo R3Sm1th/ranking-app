@@ -1,73 +1,85 @@
 <%# Hero %>
 <section class="how_section">
   <div class="container">
-    <div class="row">
-      <p> Home </p>
-    </div>
+    <%# <div class="row">
+      <p><%= link_to "Back", root_path %>
+    <%# </div> %>
     <div class="row">
       <div class="col-md-6 detail">
         <div class="detail-box">
           <%# <%= link_to "Back", root_path, class: "btn btn-primary" %>
-          <div class="heading_container">
+          <div class="heading">
             <h2>
-              The Watch Leagues
+              How it Works?
             </h2>
           </div>
+          <h6>
+            Watch Leagues
+          </h6>
           <p>
-            Each game week is given a theme e.g. "Matt Damon", "Childhood Memories", "Awkward Family Scene"
+            Once signed in, create a custom league (groups) with your friends and family.
           </p>
           <p>
-            Every participant submits a film, it is then your job to rank the films and decide the winner!
+            Each game week is given a theme for example; "Matt Damon", "Childhood Memories", "Most Awkward Moment"
           </p>
           <p>
-            Points are then tallied up over the course of a season to decide who is the ultimate movie buff.
+            Every participant submits a film, it is then your job to rank/ reorder the films and decide the winner!
+          </p>
+          <p>
+            Points are awarded for most popular selection. Which are then tallied up over the course of a season to decide who is the ultimate movie buff.
+          </p>
+          <p>
+            See interactive example for films starring Matt Damon;
           </p>
         </div>
       </div>
       <div class="col-md-6">
-        <ol class="img-box" data-controller="how">
+        <ol class="demo-box" data-controller="how">
+          <p>
+            Time to vote! Drag and drop to reorder your submission.
+          </p>
           <li>
-            <div class="notification">
-              <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-              <div class="notification-content">
-                <p><small>14th January</small></p>
-                <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
+            <div class="demo-item">
+              <img src='https://res.cloudinary.com/dcu7y5wnn/image/upload/v1690204312/inter_eg4ypw.jpg' class="demo-cover">
+              <div class="demo-item-content">
+                <p>Interstellar</p>
+                <p><small>This sci-fi was epic, enthralling and amazing</small></p>
               </div>
             </div>
           </li>
           <li>
-            <div class="notification">
-              <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-              <div class="notification-content">
-                <p><small>14th January</small></p>
-                <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
+            <div class="demo-item">
+              <img src='https://res.cloudinary.com/dcu7y5wnn/image/upload/v1690204313/googwill_jwdg2z.jpg' class="demo-cover">
+              <div class="demo-item-content">
+                <p>Good Will Hunting</p>
+                <p><small>One of the most important movies in cinema history.</small></p>
               </div>
             </div>
           </li>
           <li>
-            <div class="notification">
-              <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-              <div class="notification-content">
-                <p><small>14th January</small></p>
-                <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
+            <div class="demo-item">
+              <img src='https://res.cloudinary.com/dcu7y5wnn/image/upload/v1690204314/ripley_cqdro3.jpg' class="demo-cover">
+              <div class="demo-item-content">
+                <p>Talented Mr. Ripley</p>
+                <p><small>All of the actors were perfectly cast, Matt Damon particularly</small></p>
               </div>
             </div>
           </li>
           <li>
-            <div class="notification">
-              <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-              <div class="notification-content">
-                <p><small>14th January</small></p>
-                <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
+            <div class="demo-item">
+              <img src='https://res.cloudinary.com/dcu7y5wnn/image/upload/v1690204317/saving_gxrya7.jpg' class="demo-cover">
+              <div class="demo-item-content">
+                <p>Saving Private Ryan</p>
+                <p><small>The epic scale and action set pieces alone make this film 5 stars.</small></p>
               </div>
             </div>
           </li>
           <li>
-            <div class="notification">
-              <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-              <div class="notification-content">
-                <p><small>14th January</small></p>
-                <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
+            <div class="demo-item">
+              <img src='https://res.cloudinary.com/dcu7y5wnn/image/upload/v1690204319/bourne_vz9wkx.jpg' class="demo-cover">
+              <div class="demo-item-content">
+                <p>The Bourne Ultimatum</p>
+                <p><small>Honestly, I can't believe how good this film was. </small></p>
               </div>
             </div>
           </li>
