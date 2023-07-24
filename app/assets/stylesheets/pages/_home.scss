@@ -1,6 +1,6 @@
 // Specific CSS for your home-page
 .hero_section .container {
-  height: 100vh;
+  height: calc(100vh - 100px);
   padding: 10%;
   background-color: white;
   overflow: hidden;
@@ -16,4 +16,6 @@
 .img-box img {
   max-height: 100%;
   overflow: hidden;
+  max-height: 100%;
+  max-width: 100%;
 }

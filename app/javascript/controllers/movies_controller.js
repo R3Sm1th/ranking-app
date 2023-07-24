@@ -41,15 +41,15 @@ export default class extends Controller {
       <h1>${data.Title}</h1>
       <img src='${data.Poster}'></img>
       <div class="infos">
-        <p><strong>Release Date:</strong> ${data.Released}</p>
-        <p><strong>Runtime:</strong>  ${data.Runtime}</p>
-        <p><strong>Rating:</strong>  ${data.Rated}</p>
-        <p><strong>Genre:</strong>  ${data.Genre}</p>
+        <p><strong>Release Date: </strong> ${data.Released}</p>
+        <p><strong>Runtime: </strong>  ${data.Runtime}</p>
+        <p><strong>Rating: </strong>  ${data.Rated}</p>
+        <p><strong>Genre: </strong>  ${data.Genre}</p>
       </div>
       <div class="actors">
-        <p><strong>Director:</strong>${data.Director}</p>
-        <p><strong>Writer:</strong>${data.Writer}</p>
-        <p><strong>Actors:</strong>${data.Actors}</p>
+        <p><strong>Director: </strong>${data.Director}</p>
+        <p><strong>Writer: </strong>${data.Writer}</p>
+        <p><strong>Actors: </strong>${data.Actors}</p>
       </div>
       <div class="plot">
         <p>Plot</p>
@@ -72,23 +72,24 @@ export default class extends Controller {
         <p><strong>Website: </strong>${data.Website}</p>
       </div>
     </div>`;
-    return details
+    this.displayTarget.innerHTML = details
   };
 
-  fetchMovieData(query) {
-    const response = fetch(`https://www.omdbapi.com/?apikey=adf1f2d7&i=${query}`);
-    const data = response.json();
-    return data;
-  }
+  // fetchMovieData(query) {
+  //   const response = fetch(`https://www.omdbapi.com/?apikey=adf1f2d7&i=${query}`);
+  //   const data = response.json();
+  //   return data;
+  // }
 
   more(event) {
     event.preventDefault()
-    const movie = this.movieTarget.getAttribute('data-imdbid')
-    // this.fetchMovieData(movie)
-    // belo works to get movie data
+    // console.log(event.target.getAttribute('data-imdbid'));
+    const movie = event.target.getAttribute('data-imdbid');
+    // movie target not seeminly contextually aware return first instance, using event target
+    // const movie = this.movieTarget.getAttribute('data-imdbid')
     console.log(movie);
-    // below is the inner text i need to change
-    console.log(this.displayTarget);
-    // this.fetchMovieData(this.inputTarget.value)
+    fetch(`https://www.omdbapi.com/?apikey=adf1f2d7&i=${movie}`)
+    .then(response => response.json())
+    .then(data => this.detailedView(data))
   }
 }

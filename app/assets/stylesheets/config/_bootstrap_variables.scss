@@ -12,9 +12,9 @@ $font-size-base:         1rem;
 
 // Colors
 $body-color: $gray;
-$primary:    rgb(150, 46, 150);
+$primary:    rgba(150, 46, 150, 0.838);
 $success:    $green;
-$info:       $yellow;
+$info:       rgb(255, 255, 0);
 $danger:     $red;
 $warning:    $orange;
 
