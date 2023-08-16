@@ -1,0 +1,25 @@
+<p style="color: green"><%= notice %></p>
+
+  <div class="col">
+    <div class="card h-100">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><%= @league.name%></h5>
+        <p class="card-text"><%= @league.description %></p>
+      </div>
+      <%# <%= link_to "Show this league", league, class: "btn btn-primary" %>
+      <div>
+        <p><%= @league.no_players %>/ <%=@league.max_players %></p>
+        <p><%= @league.no_rounds %></p>
+      </div>
+      <% @users.each do |player| %>
+        <p><%= player.email %></p>
+      <% end %>
+    </div>
+  </div>
+<div>
+  <%= link_to "Edit this league", edit_league_path(@league) %> |
+  <%= link_to "Back to leagues", leagues_path %>
+
+  <%= button_to "Destroy this league", @league, method: :delete %>
+</div>

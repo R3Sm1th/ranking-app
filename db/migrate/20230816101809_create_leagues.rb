@@ -3,7 +3,7 @@ class CreateLeagues < ActiveRecord::Migration[7.0]
     create_table :leagues do |t|
       t.string :name
       t.string :description
-      t.integer :no_player
+      t.integer :no_players
       t.integer :max_players
       t.integer :no_rounds
 
