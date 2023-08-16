@@ -10,9 +10,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_18_103930) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_16_103332) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "round_id", null: false
+    t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["round_id"], name: "index_comments_on_round_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "leagues", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "no_player"
+    t.integer "max_players"
+    t.integer "no_rounds"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rounds", force: :cascade do |t|
+    t.string "theme"
+    t.string "description"
+    t.bigint "league_id", null: false
+    t.string "current"
+    t.integer "round"
+    t.datetime "submission_deadline"
+    t.datetime "voting_deadline"
+    t.boolean "completed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["league_id"], name: "index_rounds_on_league_id"
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "round_id", null: false
+    t.string "moviename"
+    t.string "movieid"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["round_id"], name: "index_submissions_on_round_id"
+    t.index ["user_id"], name: "index_submissions_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +72,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_103930) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "users_leagues", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "league_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["league_id"], name: "index_users_leagues_on_league_id"
+    t.index ["user_id"], name: "index_users_leagues_on_user_id"
+  end
+
+  add_foreign_key "comments", "rounds"
+  add_foreign_key "comments", "users"
+  add_foreign_key "rounds", "leagues"
+  add_foreign_key "submissions", "rounds"
+  add_foreign_key "submissions", "users"
+  add_foreign_key "users_leagues", "leagues"
+  add_foreign_key "users_leagues", "users"
 end
