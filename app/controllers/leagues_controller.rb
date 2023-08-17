@@ -8,7 +8,6 @@ class LeaguesController < ApplicationController
 
   # GET /leagues/1 or /leagues/1.json
   def show
-    # @users = UsersLeague.where(league_id: @league)
   end
 
   # GET /leagues/new
@@ -23,8 +22,6 @@ class LeaguesController < ApplicationController
   # POST /leagues or /leagues.json
   def create
     @league = League.new(league_params)
-    # @userleague = UsersLeague.new(league: @league, user_id: current_user)
-    # @userleague.save
     respond_to do |format|
       if @league.save
         format.html { redirect_to league_url(@league), notice: "League was successfully created." }

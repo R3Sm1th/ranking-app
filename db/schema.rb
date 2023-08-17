@@ -72,20 +72,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_16_103332) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "users_leagues", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "league_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["league_id"], name: "index_users_leagues_on_league_id"
-    t.index ["user_id"], name: "index_users_leagues_on_user_id"
-  end
-
   add_foreign_key "comments", "rounds"
   add_foreign_key "comments", "users"
   add_foreign_key "rounds", "leagues"
   add_foreign_key "submissions", "rounds"
   add_foreign_key "submissions", "users"
-  add_foreign_key "users_leagues", "leagues"
-  add_foreign_key "users_leagues", "users"
 end
