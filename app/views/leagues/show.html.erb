@@ -17,13 +17,19 @@
 </div>
 <%# ROUNDS %>
 <div class='container'>
-  <div>
-    <h6>Current Round</h6>
-    <p> <%= @next_round[0].theme %> </p>
+  <div class='card'>
+    <div class="card-body">
+      <h6>Current Round</h6>
+      <p> <%= @next_round[0].theme %> </p>
+      <p> <%= @next_round[0].submission_deadline %> </p>
+      <p> <%= @next_round[0].voting_deadline %> </p>
+    </div>
   </div>
-  <div>
-    <h6>Up Next</h6>
-    <p> <%= @next_round[1] ? @next_round[1].theme : 'End of Season' %> </p>
+  <div class='card'>
+    <div class="card-body">
+      <h6>Up Next</h6>
+      <p> <%= @next_round[1] ? @next_round[1].theme : 'End of Season' %> </p>
+    </div>
   </div>
     <div class="">
     <%= simple_form_for [@league, @round] do |f| %>
