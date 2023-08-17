@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :submissions
   root to: "pages#home"
   get "/browse", to: "pages#browse"
   get "/how-to-play", to: "pages#howitworks"

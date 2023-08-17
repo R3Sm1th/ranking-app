@@ -7,22 +7,36 @@
       <div class="card-body">
         <h5 class="card-title"><%= @league.name%></h5>
         <p class="card-text"><%= @league.description %></p>
-      </div>
-      <div>
-        <p><%= @league.no_players %>/ <%=@league.max_players %></p>
+        <p><%= @league.users.count %>/ <%=@league.max_players %></p>
         <p><%= @league.no_rounds %></p>
       </div>
     </div>
   </div>
 </div>
+
+<%# MEMBERS %>
+<div class='container'>
+  <div class='card'>
+    <div class="card-body">
+      <h6>Group Members</h6>
+    </div>
+    <ul>
+      <% @league.users.each do |user| %>
+      <li><%= user.email %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
 <%# ROUNDS %>
 <div class='container'>
   <div class='card'>
     <div class="card-body">
       <h6>Current Round</h6>
-      <p> <%= @next_round[0].theme %> </p>
-      <p> <%= @next_round[0].submission_deadline %> </p>
-      <p> <%= @next_round[0].voting_deadline %> </p>
+      <p> Theme: <%= @next_round[0].theme.capitalize() %> </p>
+      <p> Submission: <%= @next_round[0].submission_deadline %> </p>
+      <p> Voting: <%= @next_round[0].voting_deadline %> </p>
+      <%= link_to 'Show this Round', league_round_path(@league, @next_round[0]), class: "btn btn-primary" %>
     </div>
   </div>
   <div class='card'>
@@ -50,14 +64,7 @@
       t.datetime :voting_deadline
       t.boolean :completed %>
 </div>
-<div class='container'>
-  <h6>Group Members</h6>
-  <ul>
-    <% @league.users.each do |user| %>
-    <li><%= user.email %></li>
-    <% end %>
-  </ul>
-</div>
+
 <%# POSTS %>
 <div class='container'>
   <h6>Chat</h6>
@@ -80,7 +87,7 @@
   <div>
     <div class="">
       <%= simple_form_for [@league, @post] do |f| %>
-        <%= f.input :title %>
+        <%#= f.input :title %>
         <%= f.input :body %>
         <%= f.button :submit, class: 'btn btn-primary' %>
       <% end %>

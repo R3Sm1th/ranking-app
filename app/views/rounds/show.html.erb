@@ -1,10 +1,15 @@
 <p style="color: green"><%= notice %></p>
+<div class='container'>
+  <p>Theme:<%= @round.theme %></p>
+  <p>Description: <%= @round.description %></p>
+  <p>Next deadline: <%= @round.submission_deadline %></p>
+  <p><%= @round.voting_deadline %></p>
+</div>
 
-<%= render @round %>
 
 <div>
-  <%= link_to "Edit this round", edit_round_path(@round) %> |
-  <%= link_to "Back to rounds", rounds_path %>
+  <%= link_to "New Submission", new_submission_path(@league, @round) %>
+  <%#= link_to "Back to rounds", rounds_path %>
 
-  <%= button_to "Destroy this round", @round, method: :delete %>
+  <%#= button_to "Destroy this round", @round, method: :delete %>
 </div>

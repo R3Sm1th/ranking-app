@@ -23,6 +23,7 @@ class PostsController < ApplicationController
   def create
     @league = League.find(params[:league_id])
     @post = @league.posts.build(post_params.merge(user_id: current_user.id))
+    @post.title = @league.rounds.where(completed: false).sort()[0].theme
 
     respond_to do |format|
       if @post.save

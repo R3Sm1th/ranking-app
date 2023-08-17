@@ -7,8 +7,11 @@ import { application } from "./application"
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import HowController from "./how_it_works_controller"
-application.register("how", HowController)
+import HowItWorksController from "./how_it_works_controller"
+application.register("how-it-works", HowItWorksController)
 
 import MoviesController from "./movies_controller"
 application.register("movies", MoviesController)
+
+import SubmissionController from "./submission_controller"
+application.register("submission", SubmissionController)
