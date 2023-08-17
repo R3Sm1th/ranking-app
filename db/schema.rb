@@ -10,19 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_16_103332) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_17_101732) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "comments", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "round_id", null: false
-    t.string "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["round_id"], name: "index_comments_on_round_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
-  end
 
   create_table "leagues", force: :cascade do |t|
     t.string "name"
@@ -32,6 +22,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_16_103332) do
     t.integer "no_rounds"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "leagues_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "league_id", null: false
+    t.index ["league_id", "user_id"], name: "index_leagues_users_on_league_id_and_user_id"
+    t.index ["user_id", "league_id"], name: "index_leagues_users_on_user_id_and_league_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.bigint "league_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["league_id"], name: "index_posts_on_league_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "rounds", force: :cascade do |t|
@@ -72,8 +80,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_16_103332) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "comments", "rounds"
-  add_foreign_key "comments", "users"
+  add_foreign_key "posts", "leagues"
+  add_foreign_key "posts", "users"
   add_foreign_key "rounds", "leagues"
   add_foreign_key "submissions", "rounds"
   add_foreign_key "submissions", "users"

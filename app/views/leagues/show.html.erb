@@ -1,25 +1,95 @@
 <p style="color: green"><%= notice %></p>
-
+<%# HEADER %>
+<div class='container'>
   <div class="col">
     <div class="card h-100">
-      <img src="..." class="card-img-top" alt="...">
+      <img src="https://www.productionbase.co.uk/blog/wp-content/uploads/Film.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title"><%= @league.name%></h5>
         <p class="card-text"><%= @league.description %></p>
       </div>
-      <%# <%= link_to "Show this league", league, class: "btn btn-primary" %>
       <div>
         <p><%= @league.no_players %>/ <%=@league.max_players %></p>
         <p><%= @league.no_rounds %></p>
       </div>
-      <% @users.each do |player| %>
-        <p><%= player.email %></p>
+    </div>
+  </div>
+</div>
+<%# ROUNDS %>
+<div class='container'>
+  <div>
+    <h6>Current Round</h6>
+    <p> <%= @next_round[0].theme %> </p>
+  </div>
+  <div>
+    <h6>Up Next</h6>
+    <p> <%= @next_round[1] ? @next_round[1].theme : 'End of Season' %> </p>
+  </div>
+    <div class="">
+    <%= simple_form_for [@league, @round] do |f| %>
+      <%= f.input :theme %>
+      <%= f.input :description %>
+      <%= f.input :submission_deadline %>
+      <%= f.input :voting_deadline %>
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+
+      <%# t.string :theme
+      t.string :description
+      t.references :league, null: false, foreign_key: true
+      t.string :current
+      t.integer :round
+      t.datetime :submission_deadline
+      t.datetime :voting_deadline
+      t.boolean :completed %>
+</div>
+<div class='container'>
+  <h6>Group Members</h6>
+  <ul>
+    <% @league.users.each do |user| %>
+    <li><%= user.email %></li>
+    <% end %>
+  </ul>
+</div>
+<%# POSTS %>
+<div class='container'>
+  <h6>Chat</h6>
+  <div class=''>
+    <% @league.posts.each do |post|%>
+      <div class="post">
+        <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+        <div class="post-content">
+          <p><small><%= post.title %></p>
+          <p><%= post.body %></p>
+          <p><small><%= post.created_at %></small></p>
+        </div>
+        <div class="post-actions">
+          <a href="#">Like  <i class="fa-regular fa-thumbs-up"></i></a>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%# New Message %>
+  <div>
+    <div class="">
+      <%= simple_form_for [@league, @post] do |f| %>
+        <%= f.input :title %>
+        <%= f.input :body %>
+        <%= f.button :submit, class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>
+</div>
+<%# CONTROLS %>
 <div>
-  <%= link_to "Edit this league", edit_league_path(@league) %> |
-  <%= link_to "Back to leagues", leagues_path %>
-
-  <%= button_to "Destroy this league", @league, method: :delete %>
+<% if @league.users.include?(current_user) %>
+  <%= link_to 'Leave', leave_league_path(@league), method: :delete %> |
+<% else %>
+  <%= link_to 'Join', join_league_path(@league), method: :post %> |
+<% end %>
+<%= link_to "Edit this league", edit_league_path(@league) %> |
+<%= link_to "Back to leagues", leagues_path %>
+<% %>
+<%= button_to "Destroy this league", @league, method: :delete %>
 </div>

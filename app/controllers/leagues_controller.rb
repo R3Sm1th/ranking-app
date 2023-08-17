@@ -1,5 +1,5 @@
 class LeaguesController < ApplicationController
-  before_action :set_league, only: %i[ show edit update destroy ]
+  before_action :set_league, only: %i[ show edit update destroy join leave ]
 
   # GET /leagues or /leagues.json
   def index
@@ -8,6 +8,9 @@ class LeaguesController < ApplicationController
 
   # GET /leagues/1 or /leagues/1.json
   def show
+    @post = Post.new
+    @round = Round.new
+    @next_round = @league.rounds.where(completed: false).sort()
   end
 
   # GET /leagues/new
@@ -54,6 +57,16 @@ class LeaguesController < ApplicationController
       format.html { redirect_to leagues_url, notice: "League was successfully destroyed." }
       format.json { render :index, status: :ok }
     end
+  end
+  # Joining and Leaving
+  def join
+    @league.users << current_user
+    redirect_to league_url(@league), notice: 'You have successfully joined'
+  end
+
+  def leave
+    @league.users.delete(current_user)
+    redirect_to league_url(@league), notice: 'You have successfully left this league'
   end
 
   private

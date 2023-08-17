@@ -21,11 +21,13 @@ class RoundsController < ApplicationController
 
   # POST /rounds or /rounds.json
   def create
-    @round = Round.new(round_params)
+    @league = League.find(params[:league_id])
+    @round = @league.rounds.build(round_params)
+    @round.completed = false
 
     respond_to do |format|
       if @round.save
-        format.html { redirect_to round_url(@round), notice: "Round was successfully created." }
+        format.html { redirect_to league_url(@league), notice: "Round was successfully created." }
         format.json { render :show, status: :created, location: @round }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +67,6 @@ class RoundsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def round_params
-      params.fetch(:round, {})
+      params.require(:round).permit(:theme, :description, :submission_deadline, :voting_deadline)
     end
 end
