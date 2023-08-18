@@ -7,14 +7,23 @@
 </div>
 
 <div class='container'>
+  <div class="">
   <% @submissions.each do |sub| %>
-    <div class="card" style="width: 18rem;">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-text"><%= sub.moviename %>: <%= sub.comment %></p>
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="..." class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= sub.moviename %></h5>
+            <p class="card-text"><%= sub.comment %></p>
+          </div>
+        </div>
       </div>
     </div>
   <% end %>
+  </div>
 <div>
   <%= link_to "New Submission", new_round_submission_path(@round) %>
   <%#= link_to "Back to rounds", rounds_path %>

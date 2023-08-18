@@ -33,10 +33,12 @@
   <div class='card'>
     <div class="card-body">
       <h6>Current Round</h6>
-      <p> Theme: <%= @next_round[0].theme.capitalize() %> </p>
-      <p> Submission: <%= @next_round[0].submission_deadline %> </p>
-      <p> Voting: <%= @next_round[0].voting_deadline %> </p>
-      <%= link_to 'Show this Round', league_round_path(@league, @next_round[0]), class: "btn btn-primary" %>
+      <p> Theme: <%= @next_round[0] ? @next_round[0].theme.capitalize() : 'To be Set Shortly' %> </p>
+      <p> Submission: <%= @next_round[0] ? @next_round[0].submission_deadline : 'To be Set Shortly' %> </p>
+      <p> Voting: <%= @next_round[0] ? @next_round[0].voting_deadline : 'To be Set Shortly' %> </p>
+      <% if @next_round[0] %>
+        <%= link_to 'Show this Round', league_round_path(@league, @next_round[0]), class: "btn btn-primary" %>
+      <% end %>
     </div>
   </div>
   <div class='card'>
