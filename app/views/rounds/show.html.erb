@@ -6,9 +6,17 @@
   <p><%= @round.voting_deadline %></p>
 </div>
 
-
+<div class='container'>
+  <% @submissions.each do |sub| %>
+    <div class="card" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-text"><%= sub.moviename %>: <%= sub.comment %></p>
+      </div>
+    </div>
+  <% end %>
 <div>
-  <%= link_to "New Submission", new_submission_path(@league, @round) %>
+  <%= link_to "New Submission", new_round_submission_path(@round) %>
   <%#= link_to "Back to rounds", rounds_path %>
 
   <%#= button_to "Destroy this round", @round, method: :delete %>

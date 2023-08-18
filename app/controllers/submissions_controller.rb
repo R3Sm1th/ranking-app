@@ -12,6 +12,7 @@ class SubmissionsController < ApplicationController
 
   # GET /submissions/new
   def new
+    @round = Round.find(params[:round_id])
     @submission = Submission.new
   end
 
@@ -21,13 +22,14 @@ class SubmissionsController < ApplicationController
 
   # POST /submissions or /submissions.json
   def create
-    # @league = League.find(params[:league_id])
-    # @round = @league.rounds.build(round_params)
-    @submission = Submission.new(submission_params)
+    @round = Round.find(params[:round_id])
+    @submission = @round.submissions.build(submission_params)
+    @submission.user = current_user
+    # @submission = Submission.new(submission_params)
 
     respond_to do |format|
       if @submission.save
-        format.html { redirect_to submission_url(@submission), notice: "Submission was successfully created." }
+        format.html { redirect_to round_submissions_url(@round), notice: "Submission was successfully created." }
         format.json { render :show, status: :created, location: @submission }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -67,6 +69,6 @@ class SubmissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def submission_params
-      params.require(:sbumission).permit(:moviename, :movieid, :comment)
+      params.require(:submission).permit(:moviename, :movieid, :comment)
     end
 end

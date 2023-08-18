@@ -10,11 +10,12 @@
   <div data-submission-target="results">
     <%# movie titles here %>
   </div>
+
   <%= render "form", submission: @submission %>
 
   <br>
 
   <div>
-    <%= link_to "Back to submissions", submissions_path %>
+    <%= link_to "Back to submissions", round_submissions_path %>
   </div>
 </div>

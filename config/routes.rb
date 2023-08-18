@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :submissions
   root to: "pages#home"
   get "/browse", to: "pages#browse"
   get "/how-to-play", to: "pages#howitworks"
@@ -10,6 +9,9 @@ Rails.application.routes.draw do
     delete 'leave', on: :member
     resources :rounds
     resources :posts
+  end
+  resources :rounds do
+    resources :submissions
   end
 
   # Defines the root path route ("/")
