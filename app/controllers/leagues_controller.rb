@@ -60,6 +60,9 @@ class LeaguesController < ApplicationController
   end
   # Joining and Leaving
   def join
+    if (@league.users.count + 1) > @league.max_players
+      redirect_to league_url(@league), notice: 'Max Players Reached'
+    end
     @league.users << current_user
     redirect_to league_url(@league), notice: 'You have successfully joined'
   end

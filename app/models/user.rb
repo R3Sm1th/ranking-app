@@ -5,6 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_and_belongs_to_many :leagues
-  has_many :posts
-  has_many :submissions
+  has_many :posts, dependent: :destroy
+  has_many :submissions, dependent: :destroy
 end

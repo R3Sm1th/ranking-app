@@ -5,9 +5,10 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-User.destroy_all
-League.destroy_all
+Submission.destroy_all
 Post.destroy_all
+League.destroy_all
+User.destroy_all
 
 user1 = User.create!(
   email: 'test1@test.com',
@@ -21,8 +22,8 @@ user2 = User.create!(
   password_confirmation: '123456'
 )
 
-league1 = League.create!(name: 'Russells League', description: 'testing')
-league2 = League.create!(name: 'Again Russells League', description: 'testing')
+league1 = League.create!(name: 'Russells League', description: 'testing', max_players: 8, no_rounds: 4)
+league2 = League.create!(name: 'Again Russells League', description: 'testing', max_players: 8, no_rounds: 4)
 
 league1.users << user1
 league1.users << user2
