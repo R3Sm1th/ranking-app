@@ -8,6 +8,7 @@ class RoundsController < ApplicationController
 
   # GET /rounds/1 or /rounds/1.json
   def show
+    @league = League.find(params[:league_id])
     @submissions = @round.submissions
   end
 
