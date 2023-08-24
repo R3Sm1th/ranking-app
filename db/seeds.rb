@@ -12,15 +12,25 @@ User.destroy_all
 
 user1 = User.create!(
   email: 'test1@test.com',
+  first_name: 'russell',
+  last_name: 'testing',
   password: '123456',
   password_confirmation: '123456'
 )
+file = URI.open("https://res.cloudinary.com/dcu7y5wnn/image/upload/v1687964064/roy_x3uphs.webp")
+user1.photo.attach(io: file, filename: "profile_img.jpg", content_type: "image/jpg")
+user1.save
 
 user2 = User.create!(
   email: 'test2@test.com',
+  first_name: 'russell',
+  last_name: 'testing',
   password: '123456',
   password_confirmation: '123456'
 )
+file = URI.open("https://res.cloudinary.com/dcu7y5wnn/image/upload/v1687685063/IMG_0004_cnpzut.jpg")
+user2.photo.attach(io: file, filename: "profile_img.jpg", content_type: "image/jpg")
+user2.save
 
 league1 = League.create!(name: 'Russells League', description: 'testing', max_players: 8, no_rounds: 4)
 league2 = League.create!(name: 'Again Russells League', description: 'testing', max_players: 8, no_rounds: 4)

@@ -5,8 +5,8 @@ import { Sortable } from "sortablejs"
 export default class extends Controller {
 
   connect() {
-    console.log("works");
-    console.log(this.element);
+    console.log("works connected");
+    // console.log(this.element);
     Sortable.create(this.element, {
       ghostClass: "ghost",
       animation: 150

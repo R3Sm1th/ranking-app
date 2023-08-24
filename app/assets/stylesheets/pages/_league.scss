@@ -41,3 +41,19 @@
 .post .post-actions a:hover {
   color: #555555;
 }
+
+.members-horizontal-scroll-container {
+  overflow-x: auto;
+}
+
+.members-horizontal-list {
+  display: flex;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}
+
+.members-horizontal-list li {
+  margin-right: 10px;
+  display: inline-flex;
+}

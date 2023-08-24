@@ -7,8 +7,8 @@
       <div class="card-body">
         <h5 class="card-title"><%= @league.name%></h5>
         <p class="card-text"><%= @league.description %></p>
-        <p><%= @league.users.count %>/ <%=@league.max_players %></p>
-        <p><%= @league.no_rounds %></p>
+        <p>Members: <%= @league.users.count %>/ <%=@league.max_players %></p>
+        <p>Total Rounds: <%= @league.no_rounds %></p>
       </div>
     </div>
   </div>
@@ -20,11 +20,13 @@
     <div class="card-body">
       <h6>Group Members</h6>
     </div>
-    <ul>
-      <% @league.users.each do |user| %>
-      <li><%= user.email %></li>
-      <% end %>
-    </ul>
+    <div class="horizontal-scroll-container">
+      <ul class="members-horizontal-list">
+        <% @league.users.each do |user| %>
+          <li><%= cl_image_tag user.photo.key, class:"avatar-large", style: "width: 56px" %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
 
@@ -101,7 +103,7 @@
 <% if @league.users.include?(current_user) %>
   <%= link_to 'Leave', leave_league_path(@league), method: :delete %> |
 <% else %>
-  <%= link_to 'Join', join_league_path(@league), method: :post %> |
+  <%= button_to 'Join', join_league_path(@league), method: :post %> |
 <% end %>
 <%= link_to "Edit this league", edit_league_path(@league) %> |
 <%= link_to "Back to leagues", leagues_path %>
