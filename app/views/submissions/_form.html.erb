@@ -3,7 +3,7 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   <div class="form-inputs">
-    <%= f.input :moviename, input_html: { id: 'moviename', data: { submission_target: 'movienamefield' } } %>
+    <%= f.input :moviename, label: "Movie Title", input_html: { id: 'moviename', data: { submission_target: 'movienamefield' } } %>
     <%= f.input :movieid, input_html: { id: 'movieid', data: { submission_target: 'movienameid' } } %>
     <%= f.input :comment %>
   </div>

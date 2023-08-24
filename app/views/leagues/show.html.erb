@@ -46,6 +46,7 @@
   <div class='card'>
     <div class="card-body">
       <h6>Up Next</h6>
+      <%# UPDATE LOGIC ON NEXT ROUND <#% upnext = @league.no_rounds %>
       <p> <%= @next_round[1] ? @next_round[1].theme : 'End of Season' %> </p>
     </div>
   </div>
@@ -58,18 +59,9 @@
       <%= f.button :submit, class: 'btn btn-primary' %>
     <% end %>
   </div>
-
-      <%# t.string :theme
-      t.string :description
-      t.references :league, null: false, foreign_key: true
-      t.string :current
-      t.integer :round
-      t.datetime :submission_deadline
-      t.datetime :voting_deadline
-      t.boolean :completed %>
 </div>
 
-<%# POSTS %>
+<%# POSTS + To be upgraded to IM %>
 <div class='container'>
   <h6>Chat</h6>
   <div class='container'>

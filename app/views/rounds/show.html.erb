@@ -3,7 +3,7 @@
   <p>Theme:<%= @round.theme %></p>
   <p>Description: <%= @round.description %></p>
   <p>Next deadline: <%= @round.submission_deadline %></p>
-  <p><%= @round.voting_deadline %></p>
+  <p>Voting deadline: <%= @round.voting_deadline %></p>
 </div>
 
 <div class='container'>
@@ -12,6 +12,7 @@
     <div class="card mb-3" style="max-width: 540px;">
       <div class="row g-0">
         <div class="col-md-4">
+        <%# TO ADD IMAGE IN FROM OMDB %>
           <img src="..." class="img-fluid rounded-start" alt="...">
         </div>
         <div class="col-md-8">
@@ -26,7 +27,9 @@
   </div>
 <div>
   <%= link_to "New Submission", new_round_submission_path(@round) %>
-  <%= link_to "Back to League", league_path(@league) %>
+  <p>To change until only after sub deadline</p>
+  <%= link_to "Vote", new_round_vote_path(@round) %><br>
+  <%= link_to "Back to League", league_path(@round.league) %>
 
   <%#= button_to "Destroy this round", @round, method: :delete %>
 </div>

@@ -8,7 +8,7 @@ class RoundsController < ApplicationController
 
   # GET /rounds/1 or /rounds/1.json
   def show
-    @league = League.find(params[:league_id])
+    # @league = League.find(params[:league_id])
     @submissions = @round.submissions
   end
 
@@ -52,14 +52,14 @@ class RoundsController < ApplicationController
   end
 
   # DELETE /rounds/1 or /rounds/1.json
-  def destroy
-    @round.destroy
+  # def destroy
+  #   @round.destroy
 
-    respond_to do |format|
-      format.html { redirect_to rounds_url, notice: "Round was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to rounds_url, notice: "Round was successfully destroyed." }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

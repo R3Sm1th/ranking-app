@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
   resources :rounds do
     resources :submissions
+    resources :votes
   end
 
   # Defines the root path route ("/")
