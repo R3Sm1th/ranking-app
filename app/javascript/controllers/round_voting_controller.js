@@ -23,5 +23,22 @@ export default class extends Controller {
     console.log(finalList.children);
     const tags = Array.from(finalList.children).map(movie => movie.dataset.imdbid)
     console.log(tags);
+    // URL issue here...
+    let url = finalList.getAttribute('data-url')
+    console.log(url);
+    let data = { votes: tags }
+    fetch(url, {
+      method: 'PUT',
+      credentials: "same-origin",
+      headers: {
+        "X-CSRF-Token": token,
+        "Accept": "application/json",
+        "Content-type": "application/json;"
+      },
+      body: JSON.stringify(data)
+    }).catch(error => {
+      // Handle errors here
+      console.error('Error:', error);
+    });
   }
 }

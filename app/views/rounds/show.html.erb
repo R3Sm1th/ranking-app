@@ -7,23 +7,25 @@
 </div>
 <section>
   <div class='container'>
-    <div class="" data-round-voting-target="movie"  data-controller="round-voting">
-    <% @submissions.each do |sub| %>
-      <div class="card mb-3" style="max-width: 540px;"  data-imdbid="<%= sub.movieid %>">
-        <div class="row g-0">
-          <div class="col-md-4">
-          <%# TO ADD IMAGE IN FROM OMDB %>
-            <img src="..." class="img-fluid rounded-start" alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title"><%= sub.moviename %></h5>
-              <p class="card-text"><%= sub.comment %></p>
+    <%#= content_tag :div, data: { round_voting_target: "movie" }, data_controller: "round-voting", data: { url: vote_round_path(@round) } do %>
+      <div class="" data-round-voting-target="movie"  data-controller="round-voting" data-url="rounds/<%=@round.id%>/vote">
+      <% @submissions.each do |sub| %>
+        <div class="card mb-3" style="max-width: 540px;"  data-imdbid="<%= sub.movieid %>">
+          <div class="row g-0">
+            <div class="col-md-4">
+            <%# TO ADD IMAGE IN FROM OMDB %>
+              <img src="..." class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><%= sub.moviename %></h5>
+                <p class="card-text"><%= sub.comment %></p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    <%# end %>
     <% if @round.submission_deadline - (10 * 24 * 60 * 60) < Time.new %>
       <p> Deadline passed </p>
       <%#= button_to "Vote Now", vote_round_path(@round), method: :post %>
