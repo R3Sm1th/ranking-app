@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   end
   resources :rounds do
     resources :submissions
-    resources :votes
+    post 'vote', on: :member
+    # resources :votes
   end
-
   # Defines the root path route ("/")
   # root "articles#index"
 end

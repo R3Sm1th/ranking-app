@@ -13,5 +13,8 @@ application.register("how-it-works", HowItWorksController)
 import MoviesController from "./movies_controller"
 application.register("movies", MoviesController)
 
+import RoundVotingController from "./round_voting_controller"
+application.register("round-voting", RoundVotingController)
+
 import SubmissionController from "./submission_controller"
 application.register("submission", SubmissionController)

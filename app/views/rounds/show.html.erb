@@ -2,34 +2,47 @@
 <div class='container'>
   <p>Theme:<%= @round.theme %></p>
   <p>Description: <%= @round.description %></p>
-  <p>Next deadline: <%= @round.submission_deadline %></p>
+  <p>Submission deadline: <%= @round.submission_deadline %></p>
   <p>Voting deadline: <%= @round.voting_deadline %></p>
 </div>
-
-<div class='container'>
-  <div class="">
-  <% @submissions.each do |sub| %>
-    <div class="card mb-3" style="max-width: 540px;">
-      <div class="row g-0">
-        <div class="col-md-4">
-        <%# TO ADD IMAGE IN FROM OMDB %>
-          <img src="..." class="img-fluid rounded-start" alt="...">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title"><%= sub.moviename %></h5>
-            <p class="card-text"><%= sub.comment %></p>
+<section>
+  <div class='container'>
+    <div class="" data-round-voting-target="movie"  data-controller="round-voting">
+    <% @submissions.each do |sub| %>
+      <div class="card mb-3" style="max-width: 540px;"  data-imdbid="<%= sub.movieid %>">
+        <div class="row g-0">
+          <div class="col-md-4">
+          <%# TO ADD IMAGE IN FROM OMDB %>
+            <img src="..." class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= sub.moviename %></h5>
+              <p class="card-text"><%= sub.comment %></p>
+            </div>
           </div>
         </div>
       </div>
+    <% end %>
+    <% if @round.submission_deadline - (10 * 24 * 60 * 60) < Time.new %>
+      <p> Deadline passed </p>
+      <%#= button_to "Vote Now", vote_round_path(@round), method: :post %>
+      <button class="btn btn-primary btn-lg"
+        data-action="click->round-voting#obtainOrder">
+        Vote Now!
+      </button>
+    <% end %>
     </div>
-  <% end %>
-  </div>
-<div>
-  <%= link_to "New Submission", new_round_submission_path(@round) %>
-  <p>To change until only after sub deadline</p>
-  <%= link_to "Vote", new_round_vote_path(@round) %><br>
-  <%= link_to "Back to League", league_path(@round.league) %>
+  <div>
+    <% if @round.submission_deadline > Time.new %>
+      <%= link_to "New Submission", new_round_submission_path(@round) %>
+    <% end %>
+    <br>
 
-  <%#= button_to "Destroy this round", @round, method: :delete %>
-</div>
+    <br>
+    <%# <%= link_to "Vote", new_round_vote_path(@round) %>
+    <%= link_to "Back to League", league_path(@round.league) %>
+
+    <%#= button_to "Destroy this round", @round, method: :delete %>
+  </div>
+</section>
